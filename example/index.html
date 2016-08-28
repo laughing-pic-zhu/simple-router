@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .test {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body>
+<div>
+    <a href="#/aaaa/dddcccd">aaaa/dddcccd</a>
+</div>
+<div>
+    <a href="#/bbbb">bbbb</a>
+</div>
+<div>
+    <a href="#/bbbb/ddd">bbbb/ddd</a>
+</div>
+<div>
+    <a href="#/cccc/s">cccc</a>
+</div>
+<div class="test">
+</div>
+</body>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../src/router.js"></script>
+<script>
+    var router = new Router();
+    router.init();
+    var test = $('.test');
+    router.on('/', function () {
+        test.css('background-color', 'white');
+    })
+    router.on('/aaaa/:id', function () {
+        test.css('background-color', 'red');
+    })
+    router.on('/bbbb(/:name)', function () {
+        test.css('background-color', 'yellow');
+    })
+    router.on('/cccc/*', function () {
+        test.css('background-color', 'black');
+    })
+
+</script>
+</html>
