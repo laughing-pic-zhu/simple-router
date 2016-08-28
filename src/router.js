@@ -1,4 +1,3 @@
-(function(){
     function Router() {
         this.cache = {};
         //将url/callback 以key/value形式储存在cache内
@@ -6,15 +5,15 @@
             var cache = this.cache;
             cache[key] = value;
         };
-        //匹配url对应的回调函数,并触发
-        this.trigger = function (key) {
+        //匹配hash对应的回调函数,并触发
+        this.trigger = function (hash) {
             var cache = this.cache;
             for (var r in cache) {
                 var reg = this.initRegexps(r);
-                if (reg.test(key)) {
+                if (reg.test(hash)) {
                     var callback = cache[r] || function () {
                         };
-                    var params = this.getParams(reg, key);
+                    var params = this.getParams(reg, hash);
                     callback.apply(this, params);
                 }
             }
@@ -27,7 +26,7 @@
                 router.trigger(hash);
             });
             window.addEventListener('load', function () {
-                var hash = location.hash.slice(1) || 'default';
+                var hash = location.hash.slice(1);
                 router.trigger(hash);
             })
         };
@@ -48,12 +47,10 @@
         };
 
         //将匹配的正则返回,为回调函数提供参数
-        this.getParams = function (reg, key) {
-            return reg.exec(key).slice(1);
+        this.getParams = function (reg, hash) {
+            return reg.exec(hash).slice(1);
         }
     }
-    window.Router=Router;
-})();
 
 
 

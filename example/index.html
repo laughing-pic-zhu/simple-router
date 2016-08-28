@@ -8,20 +8,21 @@
     .test {
         width: 200px;
         height: 200px;
+        color:white;
     }
 </style>
 <body>
 <div>
-    <a href="#/aaaa/dddcccd">aaaa/dddcccd</a>
+    <a href="#/aaaa/bcd">hash=aaaa/bcd 匹配/aaaa/:id</a>
 </div>
 <div>
-    <a href="#/bbbb">bbbb</a>
+    <a href="#/bbbb">hash=bbbb 匹配/bbbb(/:name)</a>
 </div>
 <div>
-    <a href="#/bbbb/ddd">bbbb/ddd</a>
+    <a href="#/bbbb/ddd">hash=bbbb/ddd 匹配/bbbb(/:name)</a>
 </div>
 <div>
-    <a href="#/cccc/s">cccc</a>
+    <a href="#/cccc/s/d">hash=cccc/s/d 匹配cccc/*</a>
 </div>
 <div class="test">
 </div>
@@ -30,23 +31,22 @@
 <script src="../src/router.js"></script>
 <script>
     var router = new Router();
-    router.init();
     var test = $('.test');
     router.on('/', function () {
-        test.css('background-color', 'white');
+        test.css('background-color', 'green').css('color','white').html('我是绿色');
     })
     router.on('/aaaa/:id', function (id) {
         console.log(id);
-        test.css('background-color', 'red');
+        test.css('background-color', 'red').css('color','white').html('我是红色');
     })
     router.on('/bbbb(/:name)', function (name) {
         console.log(name);
-        test.css('background-color', 'yellow');
+        test.css('background-color', 'yellow').css('color','red').html('我是黄色');
     })
     router.on('/cccc/*', function (x) {
         console.log(x);
-        test.css('background-color', 'black');
+        test.css('background-color', 'black').css('color','white').html('我是黑色');
     })
-
+    router.init();
 </script>
 </html>
