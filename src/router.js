@@ -21,13 +21,14 @@
         };
         //初始化 添加监听浏览器hashchange 以及dom loaded函数
         this.init = function () {
+            var t=this;
             window.addEventListener('hashchange', function () {
                 var hash = location.hash.slice(1);
-                router.trigger(hash);
+                t.trigger(hash);
             });
             window.addEventListener('load', function () {
                 var hash = location.hash.slice(1);
-                router.trigger(hash);
+                t.trigger(hash);
             })
         };
         /**
